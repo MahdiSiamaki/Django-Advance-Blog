@@ -28,7 +28,7 @@ class PostList(PermissionRequiredMixin,LoginRequiredMixin,ListView):
     model = Post
     template_name = 'post_list.html'
     context_object_name = 'posts'
-    paginate_by = 2
+    paginate_by = 3
     ordering = ['-created_at']
     queryset = Post.objects.filter(status=True)
 
