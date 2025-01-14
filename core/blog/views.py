@@ -32,7 +32,7 @@ class PostList(PermissionRequiredMixin,LoginRequiredMixin,ListView):
     ordering = ['-created_at']
     queryset = Post.objects.filter(status=True)
 
-class PostDetail(DetailView):
+class PostDetail(LoginRequiredMixin,DetailView):
     model = Post
     context_object_name = 'post'
     queryset = Post.objects.filter(status=True)
@@ -50,7 +50,7 @@ class PostCreateView(FormView):
 
 '''
 
-class PostCreateView(CreateView ):
+class PostCreateView(LoginRequiredMixin,CreateView):
     model = Post
     # fields = ['title', 'author', 'content', 'category', 'published_at', 'status']
     form_class = PostForm
@@ -60,11 +60,11 @@ class PostCreateView(CreateView ):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostEditView(UpdateView):
+class PostEditView(LoginRequiredMixin,UpdateView):
     model = Post
     form_class = PostForm
     success_url = '/blog/posts/'
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin,DeleteView):
     model = Post
     success_url = '/blog/posts/'
