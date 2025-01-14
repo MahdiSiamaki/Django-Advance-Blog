@@ -1,13 +1,16 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from accounts.models import Profile
 
-User= get_user_model()
+# from core.accounts.models import Profile
+
+# User= get_user_model()
 
 class Post(models.Model):
     """
     Post model for blog app
     """
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
     image = models.ImageField(null=True, blank=True)
     title = models.CharField(max_length=100)
     content = models.TextField()
