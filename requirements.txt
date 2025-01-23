@@ -2,3 +2,6 @@ Django~=4.2.17
 django-debug-toolbar~=3.2.1
 python-decouple~=3.8
 Pillow
+djangorestframework
+markdown       # Markdown support for the browsable API.
+django-filter
