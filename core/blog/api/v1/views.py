@@ -4,6 +4,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import viewsets
 
 from .serializers import PostSerializer
 from blog.models import Post
@@ -45,12 +46,12 @@ def post_list(request):
             return Response(serializer.data,status=status.HTTP_201_CREATED)
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)'''
 
-class PostList(ListCreateAPIView):
+'''class PostList(ListCreateAPIView):
     """List all posts or create a new post"""
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
-
+'''
 
 '''@api_view(['GET','PUT','DELETE'])
 def post_detail(request,pk):
@@ -95,8 +96,18 @@ def post_detail(request,pk):
         return Response({'detail':'Post deleted'},status=status.HTTP_204_NO_CONTENT)'''
 
 
-class PostDetail(RetrieveUpdateDestroyAPIView):
+'''class PostDetail(RetrieveUpdateDestroyAPIView):
     """Retrieve, update or delete a post instance"""
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = PostSerializer
+    queryset = Post.objects.filter(status=True)
+    lookup_url_kwarg = 'pk'
+    lookup_field = 'pk'
+    # lookup_field = 'id'
+    # lookup_url_kwarg = 'id'
+'''
+
+class PostViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
