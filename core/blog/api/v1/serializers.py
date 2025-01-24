@@ -42,6 +42,7 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['id','title','content','image','status','author','category','created_at','published_at','snippet','relative_url'
                   ,'absolute_url']
+        read_only_fields = ['author']
 
     def get_absolute_url(self, obj):
         request = self.context.get('request')
@@ -59,5 +60,10 @@ class PostSerializer(serializers.ModelSerializer):
             data.pop('snippet',None)
         else:
             data.pop('content',None)
-        data['category'] = CategorySerializer(instance.category).data
+        data['category'] = CategorySerializer(instance.category,context={'request':request}).data
         return data
+
+    def create(self, validated_data):
+        request = self.context.get('request')
+        validated_data['author'] = request.user.profile
+        return super().create(validated_data)
