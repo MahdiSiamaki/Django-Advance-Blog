@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from accounts.models import Profile
+from django.urls import reverse
+
 
 # from core.accounts.models import Profile
 
@@ -20,6 +22,12 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(null=True, blank=True)
+
+    def get_snippet(self):
+        return self.content[:10]
+
+    def get_absolute_api_url(self):
+        return reverse ("blog:api-v1:post-detail", kwargs={'pk':self.pk})
 
     def __str__(self):
         return self.title
