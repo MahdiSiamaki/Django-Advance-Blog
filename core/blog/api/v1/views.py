@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -25,7 +26,7 @@ def post_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 """
 
-class PostList(APIView):
+'''class PostList(APIView):
     """List all posts or create a new post"""
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
@@ -42,7 +43,13 @@ class PostList(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
-        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)'''
+
+class PostList(ListCreateAPIView):
+    """List all posts or create a new post"""
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = PostSerializer
+    queryset = Post.objects.filter(status=True)
 
 
 '''@api_view(['GET','PUT','DELETE'])
@@ -61,7 +68,7 @@ def post_detail(request,pk):
         post.delete()
         return Response({'detail':'Post deleted'},status=status.HTTP_204_NO_CONTENT)'''
 
-class PostDetail(APIView):
+'''class PostDetail(APIView):
     """Retrieve, update or delete a post instance"""
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
@@ -85,4 +92,15 @@ class PostDetail(APIView):
         """Delete a post"""
         post = get_object_or_404(Post,pk=pk)
         post.delete()
-        return Response({'detail':'Post deleted'},status=status.HTTP_204_NO_CONTENT)
+        return Response({'detail':'Post deleted'},status=status.HTTP_204_NO_CONTENT)'''
+
+
+class PostDetail(RetrieveUpdateDestroyAPIView):
+    """Retrieve, update or delete a post instance"""
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = PostSerializer
+    queryset = Post.objects.filter(status=True)
+    lookup_url_kwarg = 'pk'
+    lookup_field = 'pk'
+    # lookup_field = 'id'
+    # lookup_url_kwarg = 'id'
