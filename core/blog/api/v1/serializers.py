@@ -31,14 +31,19 @@ class PostSerializer(serializers.ModelSerializer):
     snippet = serializers.CharField(source='get_snippet', read_only=True)
     relative_url = serializers.URLField(source='get_absolute_api_url', read_only= True)
     absolute_url = serializers.SerializerMethodField(method_name='get_absolute_url')
+
     class Meta:
         model = Post
         fields = ['id','title','content','status','author','category','created_at','published_at','snippet','relative_url'
                   ,'absolute_url']
 
-    def get_absolute_url(self,obj):
+    def get_absolute_url(self, obj):
         request = self.context.get('request')
-        return request.build_absolute_uri(obj.pk)
+        if request is None:
+            return None
+        relative_url = obj.get_absolute_api_url()
+        return request.build_absolute_uri(relative_url)
+
 
 
 class CategorySerializer(serializers.ModelSerializer):
