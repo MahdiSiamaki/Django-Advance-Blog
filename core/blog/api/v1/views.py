@@ -6,9 +6,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
 
-from .serializers import PostSerializer
-from blog.models import Post
+from .serializers import PostSerializer, CategorySerializer
+from ...models import Post,Category
 from rest_framework import status
+
 
 """
 @api_view(['GET', 'POST'])
@@ -107,11 +108,14 @@ def post_detail(request,pk):
     # lookup_url_kwarg = 'id'
 '''
 
-class PostViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+class PostModelViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
+    permission_classes = [IsAuthenticatedOrReadOnly]
     lookup_url_kwarg = 'pk'
     lookup_field = 'pk'
-    # lookup_field = 'id'
-    # lookup_url_kwarg = 'id'
+
+class CategoryModelViewSet(viewsets.ModelViewSet):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
