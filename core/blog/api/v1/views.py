@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
+from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import PostSerializer, CategorySerializer
@@ -114,8 +115,9 @@ class PostModelViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend,SearchFilter]
     filterset_fields = ['category', 'author', 'status']
+    search_fields = ['title', 'content']
     lookup_url_kwarg = 'pk'
     lookup_field = 'pk'
 
