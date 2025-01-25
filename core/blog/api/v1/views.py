@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 
 from .serializers import PostSerializer, CategorySerializer
+from .permissions import IsOwnerOrReadOnly
 from ...models import Post,Category
 from rest_framework import status
 
@@ -111,7 +112,7 @@ def post_detail(request,pk):
 class PostModelViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     lookup_url_kwarg = 'pk'
     lookup_field = 'pk'
 
