@@ -11,6 +11,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import PostSerializer, CategorySerializer
 from .permissions import IsOwnerOrReadOnly
 from ...models import Post,Category
+from .paginations import DefaultPagination
 from rest_framework import status
 
 
@@ -119,6 +120,7 @@ class PostModelViewSet(viewsets.ModelViewSet):
     filterset_fields = ['category', 'author', 'status']
     search_fields = ['title', 'content']
     ordering_fields= ['published_at']
+    pagination_class = DefaultPagination
     lookup_url_kwarg = 'pk'
     lookup_field = 'pk'
 
