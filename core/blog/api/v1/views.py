@@ -117,7 +117,7 @@ class PostModelViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.filter(status=True)
     permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
-    filterset_fields = ['category', 'author', 'status']
+    filterset_fields = {'category':['exact','in'],'author':['exact'],'status':['exact']}
     search_fields = ['title', 'content']
     ordering_fields= ['published_at']
     pagination_class = DefaultPagination
