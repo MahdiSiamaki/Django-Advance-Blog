@@ -152,3 +152,7 @@ REST_FRAMEWORK = {
     #     'rest_framework.permissions.IsAuthenticated',
     # ),
 }
+
+# Add these lines to your settings.py
+# LOGIN_REDIRECT_URL = '/'  # Where to redirect after login
+# LOGOUT_REDIRECT_URL = '/'  # Where to redirect after logout
