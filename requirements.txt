@@ -1,7 +1,13 @@
+# general modules
 Django~=4.2.17
-django-debug-toolbar~=3.2.1
 python-decouple~=3.8
 Pillow
+
+# third party modules
+django-debug-toolbar~=3.2.1
 djangorestframework
 markdown       # Markdown support for the browsable API.
 django-filter
+drf-yasg[validation]
+
+# deployment module
