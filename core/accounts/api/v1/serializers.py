@@ -1,11 +1,10 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions
 from django.utils.translation import gettext_lazy as _
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
 from ...models import User
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class RegisterSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(write_only=True,max_length=100,min_length=4)
@@ -71,3 +70,17 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['email'] = self.user.email
         data['user_id'] = self.user.id
         return data
+
+class ChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+    new_password1 = serializers.CharField(required=True)
+
+    def validate(self, attrs):
+        if attrs['new_password'] != attrs['new_password1']:
+            raise serializers.ValidationError("Password did not match")
+        try:
+            validate_password(attrs['new_password'])
+        except exceptions.ValidationError as e:
+            raise serializers.ValidationError({'new_password': list(e.messages)})
+        return attrs
