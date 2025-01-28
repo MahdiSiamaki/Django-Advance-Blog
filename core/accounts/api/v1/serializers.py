@@ -3,7 +3,8 @@ from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions
 from django.utils.translation import gettext_lazy as _
-from ...models import User
+from ...models import User, Profile
+
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -84,3 +85,10 @@ class ChangePasswordSerializer(serializers.Serializer):
         except exceptions.ValidationError as e:
             raise serializers.ValidationError({'new_password': list(e.messages)})
         return attrs
+
+class ProfileSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(source='user.email', read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = ['id', 'email', 'first_name', 'last_name', 'image', 'description']
