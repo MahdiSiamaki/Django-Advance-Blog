@@ -9,7 +9,9 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    password1 = serializers.CharField(write_only=True, max_length=100, min_length=4)
+    password1 = serializers.CharField(
+        write_only=True, max_length=100, min_length=4
+    )
 
     class Meta:
         model = User
@@ -90,7 +92,9 @@ class ChangePasswordSerializer(serializers.Serializer):
         try:
             validate_password(attrs["new_password"])
         except exceptions.ValidationError as e:
-            raise serializers.ValidationError({"new_password": list(e.messages)})
+            raise serializers.ValidationError(
+                {"new_password": list(e.messages)}
+            )
         return attrs
 
 
@@ -99,7 +103,14 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ["id", "email", "first_name", "last_name", "image", "description"]
+        fields = [
+            "id",
+            "email",
+            "first_name",
+            "last_name",
+            "image",
+            "description",
+        ]
 
 
 class EmailVerificationSerializer(serializers.Serializer):

@@ -3,7 +3,9 @@ from mail_templated import EmailMessage
 from django.conf import settings
 
 
-class EmailThread(threading.Thread):  # Fix spelling from EmailThead to EmailThread
+class EmailThread(
+    threading.Thread
+):  # Fix spelling from EmailThead to EmailThread
     def __init__(self, subject, template_name, context):
         self.subject = subject
         self.template_name = template_name

@@ -9,7 +9,9 @@ class Profile(models.Model):
     Profile model for storing profile details
     """
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="profile"
+    )
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     image = models.ImageField(null=True, blank=True)

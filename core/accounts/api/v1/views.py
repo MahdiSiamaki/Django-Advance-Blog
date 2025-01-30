@@ -1,7 +1,10 @@
 from rest_framework import generics
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import (
+    RetrieveUpdateDestroyAPIView,
+    RetrieveUpdateAPIView,
+)
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
@@ -77,7 +80,9 @@ class CustomObtainAuthToken(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         token, created = Token.objects.get_or_create(user=user)
-        return Response({"token": token.key, "user_id": user.pk, "email": user.email})
+        return Response(
+            {"token": token.key, "user_id": user.pk, "email": user.email}
+        )
 
 
 class Logout(APIView):
@@ -103,14 +108,18 @@ class ChangePasswordView(generics.GenericAPIView):
         self.object = self.get_object()
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        if not self.object.check_password(serializer.data.get("old_password")):
+        if not self.object.check_password(
+            serializer.data.get("old_password")
+        ):
             return Response(
                 {"old_password": ["Wrong password."]},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         self.object.set_password(serializer.data.get("new_password"))
         self.object.save()
-        return Response("Password changed successfully", status=status.HTTP_200_OK)
+        return Response(
+            "Password changed successfully", status=status.HTTP_200_OK
+        )
 
 
 class ProfileView(RetrieveUpdateAPIView):
@@ -188,7 +197,10 @@ class VerifyEmail(generics.GenericAPIView):
                 user.is_verified = True
                 user.save()
                 return Response(
-                    {"status": "success", "message": "Email verified successfully"},
+                    {
+                        "status": "success",
+                        "message": "Email verified successfully",
+                    },
                     status=status.HTTP_200_OK,
                 )
 

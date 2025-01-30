@@ -1,4 +1,7 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import (
+    PermissionRequiredMixin,
+    LoginRequiredMixin,
+)
 from django.shortcuts import render
 from django.views.generic import (
     TemplateView,
