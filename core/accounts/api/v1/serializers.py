@@ -98,3 +98,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['id', 'email', 'first_name', 'last_name', 'image', 'description']
+
+class EmailVerificationSerializer(serializers.Serializer):
+    email = serializers.EmailField()
