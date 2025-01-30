@@ -10,7 +10,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import PostSerializer, CategorySerializer
 from .permissions import IsOwnerOrReadOnly
-from ...models import Post,Category
+from ...models import Post, Category
 from .paginations import DefaultPagination
 from rest_framework import status
 
@@ -58,7 +58,7 @@ def post_list(request):
     queryset = Post.objects.filter(status=True)
 '''
 
-'''@api_view(['GET','PUT','DELETE'])
+"""@api_view(['GET','PUT','DELETE'])
 def post_detail(request,pk):
     post = get_object_or_404(Post,pk=pk)
     if request.method == 'GET':
@@ -72,7 +72,7 @@ def post_detail(request,pk):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         post.delete()
-        return Response({'detail':'Post deleted'},status=status.HTTP_204_NO_CONTENT)'''
+        return Response({'detail':'Post deleted'},status=status.HTTP_204_NO_CONTENT)"""
 
 '''class PostDetail(APIView):
     """Retrieve, update or delete a post instance"""
@@ -112,17 +112,23 @@ def post_detail(request,pk):
     # lookup_url_kwarg = 'id'
 '''
 
+
 class PostModelViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
-    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
-    filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
-    filterset_fields = {'category':['exact','in'],'author':['exact'],'status':['exact']}
-    search_fields = ['title', 'content']
-    ordering_fields= ['published_at']
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = {
+        "category": ["exact", "in"],
+        "author": ["exact"],
+        "status": ["exact"],
+    }
+    search_fields = ["title", "content"]
+    ordering_fields = ["published_at"]
     pagination_class = DefaultPagination
-    lookup_url_kwarg = 'pk'
-    lookup_field = 'pk'
+    lookup_url_kwarg = "pk"
+    lookup_field = "pk"
+
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
