@@ -9,6 +9,7 @@ djangorestframework
 markdown       # Markdown support for the browsable API.
 django-filter
 drf-yasg[validation]
+djoser
 
 # deployment module
 
