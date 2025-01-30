@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'drf_yasg',
+    'mail_templated',
 ]
 
 MIDDLEWARE = [
@@ -161,12 +162,11 @@ REST_FRAMEWORK = {
 # LOGIN_REDIRECT_URL = '/'  # Where to redirect after login
 # LOGOUT_REDIRECT_URL = '/'  # Where to redirect after logout
 
-# email backend settings
+# Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp4dev'
 EMAIL_PORT = 25
 EMAIL_USE_TLS = False
-EMAIL_HOST_USER = ''
+EMAIL_HOST_USER = 'noreply@example.com'  # Add a default sender email
 EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-

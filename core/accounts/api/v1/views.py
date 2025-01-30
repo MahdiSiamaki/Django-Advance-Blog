@@ -8,11 +8,12 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.shortcuts import get_object_or_404
-from django.core.mail import send_mail
+from mail_templated import send_mail
 
 from .serializers import RegisterSerializer, CustomAuthTokenSerializer, CustomTokenObtainPairSerializer, \
     ChangePasswordSerializer, ProfileSerializer
 from ...models import Profile
+from ..utils import EmailThread
 
 
 class RegisterApiView(generics.GenericAPIView):
@@ -79,11 +80,19 @@ class ProfileView(RetrieveUpdateAPIView):
 
 class TestEmail(generics.GenericAPIView):
     def get(self, request):
-        send_mail(
-            "Subject here",
-            "Here is the message.",
-            "from@example.com",
-            ["to@example.com"],
-            fail_silently=False,
+        context = {
+            'name': 'Test Name',
+            'email': 'test@example.com'  # Make sure this is a valid email address
+        }
+        
+        email_thread = EmailThread(  # Fix class name here
+            subject='Welcome to Our Website',
+            template_name='email/welcome.tpl',
+            context=context
         )
-        return Response("Email sent", status=status.HTTP_200_OK)
+        email_thread.start()
+        
+        return Response({
+            'status': 'success',
+            'message': 'Email sent successfully'
+        }, status=status.HTTP_200_OK)
