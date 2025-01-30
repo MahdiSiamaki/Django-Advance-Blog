@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
 
 from .serializers import RegisterSerializer, CustomAuthTokenSerializer, CustomTokenObtainPairSerializer, \
     ChangePasswordSerializer, ProfileSerializer
@@ -74,3 +75,15 @@ class ProfileView(RetrieveUpdateAPIView):
 
     def get_object(self):
         return get_object_or_404(Profile, user=self.request.user)
+
+
+class TestEmail(generics.GenericAPIView):
+    def get(self, request):
+        send_mail(
+            "Subject here",
+            "Here is the message.",
+            "from@example.com",
+            ["to@example.com"],
+            fail_silently=False,
+        )
+        return Response("Email sent", status=status.HTTP_200_OK)
