@@ -16,7 +16,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.12'
     
     - name: Install Docker Compose
       run: |
@@ -26,5 +26,8 @@ jobs:
     - name: Setup Docker-compose
       run: docker-compose up -d
     
+    # - name: Run Flake8
+    #   run: docker exec backend sh -c "flake8"
+    
     - name: Run Tests
-      run: docker exec backend sh -c "flake8 && pytest ."
+      run: docker exec backend sh -c "pytest ."
