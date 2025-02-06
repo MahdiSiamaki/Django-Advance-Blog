@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import RegisterView
+from .views import RegisterView, CacheTestView
 
 app_name = "accounts"
 
@@ -11,4 +11,5 @@ urlpatterns = [
     # path('api/v1/', include('accounts.api.v1.urls')),
     path("api/v2/", include("djoser.urls")),
     path("api/v2/", include("djoser.urls.jwt")),
+    path('cache/test/', CacheTestView, name='cache_test'),
 ]
