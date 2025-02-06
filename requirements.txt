@@ -27,4 +27,6 @@ faker
 # background proccess and cache
 celery
 django-celery-results
+django-celery-beat
 redis
+django-redis
