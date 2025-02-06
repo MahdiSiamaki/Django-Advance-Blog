@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "mail_templated",
     "djoser",
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -174,3 +175,8 @@ EMAIL_USE_TLS = False
 EMAIL_HOST_USER = "noreply@example.com"  # Add a default sender email
 EMAIL_HOST_PASSWORD = ""
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+# celery configs
+CELERY_BROKER_URL = "redis://redis:6379/1"
+CELERY_RESULT_BACKEND = 'django-db'
