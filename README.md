@@ -26,11 +26,6 @@ Django-Blog-App is a comprehensive blogging platform built with Django. It inclu
 - Docker
 - Pytest
 
-## Screenshots
-![Homepage](screenshots/homepage.png)
-![Admin Panel](screenshots/admin_panel.png)
-![Blog Post](screenshots/blog_post.png)
-
 ## Project Structure
 The project structure is as follows:
 ```
