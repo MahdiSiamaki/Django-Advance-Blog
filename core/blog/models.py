@@ -14,7 +14,7 @@ class Post(models.Model):
     Post model for blog app
     """
 
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts")
     image = models.ImageField(null=True, blank=True)
     title = models.CharField(max_length=100)
     content = models.TextField()
