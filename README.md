@@ -28,15 +28,21 @@ To set up the project, follow these steps:
    python manage.py migrate
    ```
 
+   [![Set Up Database](https://img.shields.io/badge/Set%20Up%20Database-blue)](python manage.py migrate)
+
 5. Create a superuser:
    ```bash
    python manage.py createsuperuser
    ```
 
+   [![Create Superuser](https://img.shields.io/badge/Create%20Superuser-blue)](python manage.py createsuperuser)
+
 6. Run the development server:
    ```bash
    python manage.py runserver
    ```
+
+   [![Run Development Server](https://img.shields.io/badge/Run%20Development%20Server-blue)](python manage.py runserver)
 
 ## Running the Project using Docker
 To run the project using Docker, follow these steps:
@@ -45,6 +51,8 @@ To run the project using Docker, follow these steps:
    ```bash
    docker-compose up --build
    ```
+
+   [![Run Docker Containers](https://img.shields.io/badge/Run%20Docker%20Containers-blue)](docker-compose up --build)
 
 2. Access the application at `http://127.0.0.1:8000/`.
 
@@ -58,6 +66,8 @@ The project uses Celery for background processing. To start the Celery worker, f
    docker-compose run worker
    ```
 
+   [![Run Celery Worker](https://img.shields.io/badge/Run%20Celery%20Worker-blue)](docker-compose run worker)
+
 2. The Celery worker will now process background tasks.
 
 ## Email Settings
@@ -70,6 +80,8 @@ To run tests using pytest, follow these steps:
    ```bash
    pytest
    ```
+
+   [![Run Tests](https://img.shields.io/badge/Run%20Tests-blue)](pytest)
 
 ## Usage
 To use the project, follow these guidelines:
