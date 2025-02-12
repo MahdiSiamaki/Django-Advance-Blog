@@ -1,7 +1,74 @@
 # Django-Advance-Blog
 
+## Build Status
+![Build Status](https://github.com/MahdiSiamaki/Django-Blog-App/actions/workflows/django-test.yml/badge.svg)
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Code Quality
+![Code Quality](https://img.shields.io/codefactor/grade/github/MahdiSiamaki/Django-Blog-App)
+
 ## Project Description
 Django-Advance-Blog is a comprehensive blogging platform built with Django. It includes features such as user authentication, blog post creation, commenting, and more. The project is designed to be easily extendable and customizable.
+
+## Python
+This project uses Python 3.12.
+
+## Django
+This project uses Django 4.2.17.
+
+## Project Structure
+The project structure is as follows:
+```
+Django-Blog-App/
+├── core/
+│   ├── accounts/
+│   ├── blog/
+│   ├── comment/
+│   ├── core/
+│   ├── static/
+│   ├── templates/
+│   ├── manage.py
+│   └── requirements.txt
+├── docker-compose.yml
+├── Dockerfile
+└── README.md
+```
+
+## API Endpoints
+The available API endpoints are as follows:
+
+### Accounts
+- `POST /accounts/api/v1/register/` - Register a new user
+- `POST /accounts/api/v1/token/login/` - Login with email and password
+- `POST /accounts/api/v1/token/logout/` - Logout
+- `POST /accounts/api/v1/jwt/create/` - Create JWT token
+- `POST /accounts/api/v1/jwt/refresh/` - Refresh JWT token
+- `POST /accounts/api/v1/jwt/verify/` - Verify JWT token
+- `POST /accounts/api/v1/change-password/` - Change password
+- `POST /accounts/api/v1/test-email/` - Send test email
+- `GET /accounts/api/v1/verify-email/<str:token>/` - Verify email
+- `POST /accounts/api/v1/resend-verification-email/` - Resend verification email
+
+### Blog
+- `GET /blog/api/v1/posts/` - List all posts
+- `POST /blog/api/v1/posts/` - Create a new post
+- `GET /blog/api/v1/posts/<int:pk>/` - Retrieve a post
+- `PUT /blog/api/v1/posts/<int:pk>/` - Update a post
+- `DELETE /blog/api/v1/posts/<int:pk>/` - Delete a post
+- `GET /blog/api/v1/categories/` - List all categories
+- `POST /blog/api/v1/categories/` - Create a new category
+- `GET /blog/api/v1/categories/<int:pk>/` - Retrieve a category
+- `PUT /blog/api/v1/categories/<int:pk>/` - Update a category
+- `DELETE /blog/api/v1/categories/<int:pk>/` - Delete a category
+
+### Comments
+- `GET /comments/api/v1/comments/` - List all comments
+- `POST /comments/api/v1/comments/` - Create a new comment
+- `GET /comments/api/v1/comments/<int:pk>/` - Retrieve a comment
+- `PUT /comments/api/v1/comments/<int:pk>/` - Update a comment
+- `DELETE /comments/api/v1/comments/<int:pk>/` - Delete a comment
 
 ## Installation
 To set up the project, follow these steps:
