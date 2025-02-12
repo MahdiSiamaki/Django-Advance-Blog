@@ -1,22 +1,13 @@
-# Django-Advance-Blog
+# Django Blog App
 
-## Build Status
-![Build Status](https://github.com/MahdiSiamaki/Django-Blog-App/actions/workflows/django-test.yml/badge.svg)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Code Quality](https://img.shields.io/badge/code%20quality-A-brightgreen)
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![Django](https://img.shields.io/badge/django-5.1.5-blue)
+![Docker](https://img.shields.io/badge/docker-available-blue)
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
-
-## Code Quality
-![Code Quality](https://img.shields.io/codefactor/grade/github/MahdiSiamaki/Django-Blog-App)
-
-## Project Description
-Django-Advance-Blog is a comprehensive blogging platform built with Django. It includes features such as user authentication, blog post creation, commenting, and more. The project is designed to be easily extendable and customizable.
-
-## Python
-This project uses Python 3.12.
-
-## Django
-This project uses Django 4.2.17.
+Django-Blog-App is a comprehensive blogging platform built with Django. It includes features such as user authentication, blog post creation, commenting, and more. The project is designed to be easily extendable and customizable.
 
 ## Project Structure
 The project structure is as follows:
