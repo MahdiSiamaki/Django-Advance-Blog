@@ -9,6 +9,28 @@
 
 Django-Blog-App is a comprehensive blogging platform built with Django. It includes features such as user authentication, blog post creation, commenting, and more. The project is designed to be easily extendable and customizable.
 
+## Features
+- User authentication and authorization
+- Blog post creation, editing, and deletion
+- Commenting on blog posts
+- Categorization of blog posts
+- JWT authentication for API endpoints
+- Background task processing with Celery
+
+
+## Technologies Used
+- Django
+- Django REST Framework
+- Celery
+- Redis
+- Docker
+- Pytest
+
+## Screenshots
+![Homepage](screenshots/homepage.png)
+![Admin Panel](screenshots/admin_panel.png)
+![Blog Post](screenshots/blog_post.png)
+
 ## Project Structure
 The project structure is as follows:
 ```
@@ -137,6 +159,17 @@ To use the project, follow these guidelines:
 3. Visit the homepage at `http://127.0.0.1:8000/` to see the blog posts.
 4. Users can register, log in, and comment on blog posts.
 
+## Troubleshooting
+### Common Issues
+- **Issue:** Unable to connect to the database.
+  **Solution:** Ensure that the database service is running and the connection settings in `core/core/settings.py` are correct.
+
+- **Issue:** Email not being sent.
+  **Solution:** Check the email settings in `core/core/settings.py` and ensure that the SMTP server is running.
+
+- **Issue:** Celery worker not processing tasks.
+  **Solution:** Ensure that the Celery worker is running and connected to the Redis server.
+
 ## Contribution
 To contribute to the project, follow these steps:
 
@@ -154,6 +187,9 @@ To contribute to the project, follow these steps:
    git push origin feature-branch
    ```
 5. Create a pull request.
+
+## Contact
+For support or inquiries, please contact the project maintainer at [siamaki.me@gmail.com](mailto:siamaki.me@gmail.com).
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
