@@ -38,6 +38,39 @@ To set up the project, follow these steps:
    python manage.py runserver
    ```
 
+## Running the Project using Docker
+To run the project using Docker, follow these steps:
+
+1. Build and start the Docker containers:
+   ```bash
+   docker-compose up --build
+   ```
+
+2. Access the application at `http://127.0.0.1:8000/`.
+
+3. Access the admin panel at `http://127.0.0.1:8000/admin/` and log in with the superuser credentials.
+
+## Celery Background Processing
+The project uses Celery for background processing. To start the Celery worker, follow these steps:
+
+1. Start the Celery worker:
+   ```bash
+   docker-compose run worker
+   ```
+
+2. The Celery worker will now process background tasks.
+
+## Email Settings
+The project is configured to use SMTP for sending emails. The email settings are defined in `core/core/settings.py` and `docker-compose.yml`. By default, the project uses `smtp4dev` for local email testing.
+
+## Running Tests using Pytest
+To run tests using pytest, follow these steps:
+
+1. Run the tests:
+   ```bash
+   pytest
+   ```
+
 ## Usage
 To use the project, follow these guidelines:
 
